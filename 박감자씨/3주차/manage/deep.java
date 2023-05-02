@@ -1,31 +1,34 @@
 package manage;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class deep implements studentManager {
-    HashMap<String, Student> map = new HashMap<>();
+    List<Student> list = new ArrayList<>();
 
     @Override
     public void addStudent(Student student) {
-        map.put(student.getName(), student);
-    }
-    @Override
-    public void updateStudent(String name, double score) {
-        Student tmp = map.get(name);
-        tmp.setPoint(score);
-        map.put(name, tmp);
+        list.add(student);
     }
 
     @Override
+    public void updateStudent(String name, double score) {
+        for (Student student : list) {
+            if(student.getName().equals(name)){
+                student.setPoint(score);
+            }
+        }
+    }
+    @Override
     public void deleteStudent(String name) {
-        map.remove(name);
+        list.removeIf(student -> student.getName().equals(name));
     }
 
     @Override
     public void printAllStudent() {
-        Set<String> set = map.keySet();
-        for (String s : set) {
-            System.out.println(s + " 학생의 점수는 " + map.get(s).getPoint() + "점 입니다.");
+        for (Student s : list) {
+            System.out.println(s.getName() + " 학생의 점수는 " + s.getPoint() + "점 입니다.");
         }
     }
 }

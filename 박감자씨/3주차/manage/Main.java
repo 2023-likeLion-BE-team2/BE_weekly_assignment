@@ -1,5 +1,5 @@
 package manage;
-public class main {
+public class Main {
     public static void main(String[] args) {
         deep d = new deep();
         d.addStudent(new Student(100.0,"이은경"));
