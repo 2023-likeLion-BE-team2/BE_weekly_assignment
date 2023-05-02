@@ -14,7 +14,7 @@ public class StudentManagerImplement implements StudentManager{
     @Override
     public void updateStudent(String name, double score) {
         for(Student st : studentList){
-            if(st.getName().compareTo(name)==0){
+            if(st.getName().equals(name)){
                 st.setScore(score);
             }
         }
@@ -22,12 +22,9 @@ public class StudentManagerImplement implements StudentManager{
 
     @Override
     public void deleteStudent(String name) {
-        for(int i=0;i< studentList.size();i++){
-            if(studentList.get(i).getName().compareTo(name)==0){
-                studentList.remove(i);
-                break;
-            }
-        }
+
+        studentList.removeIf(student -> student.getName().equals(name));
+
     }
 
     @Override
